@@ -2,7 +2,8 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const bodyParser = require('body-parser');
 const { connect } = require('mongoose');
-const { makeExecutableSchema } = require('graphql-tools');
+//const { makeExecutableSchema } = require('@graphql-tools/utils');
+const { makeSchema, makeExecutableSchema } = require('@graphql-tools/schema');
 const { ApolloServerPluginLandingPageProductionDefault } = require('apollo-server-core');
 
 //conexion con DataBase mongoDB
@@ -25,8 +26,9 @@ app.use(bodyParser.json());
 
 //typeDfs y resolvers
 //typedefs y resolvers
-const typeDefs = require('./merge/mergeSchema');
-const resolvers = require('./merge/mergeSchema');
+ const typeDefs = require('./merge/mergeSchema');
+ const resolvers = require('./merge/mergeResolver');
+
 
 //configuración del servidor con express
 //configuration of express server
@@ -48,7 +50,7 @@ async function start(){
   apolloServer.applyMiddleware({app});
 
   app.listen(PORT, () => {
-    console.log(`app-taller ready at ${PORT}`);
+    console.log(`app-taller ready at port: ${PORT}`);
     connectDB
   })
 }
