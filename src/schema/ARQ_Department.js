@@ -25,7 +25,7 @@ const ARQ_DepartmentSchema = [`
     }
 
     type Query {
-      ARQ_Department(filter: ARQ_Department_filter, options: Options):[ARQ_Department]
+      ARQ_Department(filter: ARQ_Department_filter):[ARQ_Department]
       ARQ_Department_count(filter: ARQ_Department_filter):Int
     }
 
