@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const collectionName = "Inventory";
 
-const ARQ_InventorySchema = Schema(
+const schema = Schema(
   {
     _id: { type: String, required: true },
     key: { type: String, required: true },
@@ -19,4 +19,4 @@ const ARQ_InventorySchema = Schema(
   }
 );
 
-module.exports = model(collectionName, ARQ_InventorySchema);
+module.exports = model(collectionName, schema);
