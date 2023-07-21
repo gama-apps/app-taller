@@ -30,7 +30,7 @@ const ARQ_DepartmentSchema = [`
     }
 
     type Mutation {
-      ARQ_Department_save(input: ARQ_Department_input):ID
+      ARQ_Department_save(departmentInput: ARQ_Department_input):ID
       ARQ_Department_delete(_id: String!):Boolean
     }
 `];
