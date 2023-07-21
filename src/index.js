@@ -10,12 +10,12 @@ const { ApolloServerPluginLandingPageProductionDefault } = require('apollo-serve
 //data base conecction
 const db = process.env.MONGODB || 'mongodb://localhost:27017/ms-taller-app'
 
-const connectDB = () => {
+const connectDb = async () => {
   try {
-    connect(db)
-    console.log('db connected');
+      await connect(db);
+      console.log('DB CONNECTED..');
   } catch (error) {
-    return error
+      console.error('DB CONNECTION ERROR:', error);
   }
 }
 
@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 
 //configuración del servidor con express
 //configuration of express server
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4003;
 
 //configuración del servidor de apollo y la conexion con el servidor de express
 //configuration of Apollo server an connection with express server
@@ -51,7 +51,7 @@ async function start(){
 
   app.listen(PORT, () => {
     console.log(`app-taller ready at port: ${PORT}`);
-    connectDB
+    connectDb()
   })
 }
 
