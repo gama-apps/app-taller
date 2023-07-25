@@ -4,7 +4,7 @@ const collectionName = "Inventory";
 const schema = Schema(
   {
     _id: { type: String, required: true },
-    key: { type: String, required: true },
+    key: { type: String, required: true, unique: true },
     name: { type: String, default: "" },
     quantity: { type: Number, default: 0 },
     isAvailable: { type: Boolean, default: true },

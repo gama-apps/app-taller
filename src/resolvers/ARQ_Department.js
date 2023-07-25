@@ -51,7 +51,7 @@ const ARQ_Department_create = async (_, { departmentInput = {} }) => {
       createdAt: new Date().getTime(),
     }).save();
 
-    return newDepartment;
+    return newDepartment._id;
   } catch (error) {
     return error;
   }
