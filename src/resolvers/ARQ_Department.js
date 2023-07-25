@@ -1,8 +1,6 @@
 const Department = require('../models/Department');
-const {
-  generateId,
-  handlePagination,
-} = require("@codecraftkit/utils");
+const { handlePagination } = require("@codecraftkit/utils");
+const { v4: uuidv4 } = require('uuid');
 
 const ARQ_Department = async (_, { filter = {}, options = {}, count = false }) => {
   try {
@@ -40,7 +38,7 @@ const ARQ_Department_count = async (_, { filter = {} }) => {
 
 const ARQ_Department_create = async (_, { departmentInput = {} }) => {
   try {
-    const ID = generateId();
+    const ID = uuidv4();
     const { name, users = [] } = departmentInput;
 
     const key = name.trim().toLowerCase().replaceAll(" ", "_");
