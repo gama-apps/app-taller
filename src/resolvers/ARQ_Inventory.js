@@ -1,5 +1,5 @@
 const Inventory = require('../models/Inventory');
-const { generateId, handlePagination } = require("@codecraftkit/utils");
+const { handlePagination } = require("@codecraftkit/utils");
 const { v4: uuidv4 } = require('uuid');
 
 const ARQ_Inventory = async (_, { filter = {}, options = {}, count = false }) => {
@@ -53,7 +53,7 @@ const ARQ_Inventory_create = async (_, { inventoryInput = {} }) => {
       isAvailable,
       department,
       createdAt: new Date().getTime(),
-      extraDateInfo: getDateDetails(new Date()),
+      //extraDateInfo: getDateDetails(new Date()),
     }).save();
 
     return newInventory._id
