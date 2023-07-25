@@ -1,5 +1,6 @@
 const Inventory = require('../models/Inventory');
 const { generateId, handlePagination } = require("@codecraftkit/utils");
+const { v4: uuidv4 } = require('uuid');
 
 const ARQ_Inventory = async (_, { filter = {}, options = {}, count = false }) => {
   try {
@@ -39,7 +40,7 @@ const ARQ_Inventory_count = async (_, { filter = {} }) => {
 
 const ARQ_Inventory_create = async (_, { inventoryInput = {} }) => {
   try {
-    const ID = generateId();
+    const ID = uuidv4();
     const { name, quantity, isAvailable, department } = inventoryInput;
 
     const key = name.trim().toLowerCase().replaceAll(" ", "_");
