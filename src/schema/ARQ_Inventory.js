@@ -1,5 +1,3 @@
-const {GraphQLDateTime} = require('graphql-iso-date');
-
 const ARQ_InventorySchema = [`
 
   type ARQ_Inventory {
