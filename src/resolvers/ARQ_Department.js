@@ -12,6 +12,7 @@ const ARQ_Department = async (_, { filter = {}, options = {}, count = false }) =
     if (key) query.key = { $regex: key, $options: "i" };
     if (name) query.name = { $regex: name, $options: "i" };
     if (users) query.users = users;
+    const find = Department.find(query);
 
     if (count) return await Department.countDocuments(query);
 
@@ -55,7 +56,11 @@ const ARQ_Department_create = async (_, { departmentInput = {} }) => {
 
     return newDepartment._id;
   } catch (error) {
-    return error;
+    if (error.code === 11000) {
+      throw new Error('Ese departamento ya existe. Por favor, elija otro nombre para el departamento.');
+    } else {
+      throw error;
+    }
   }
 };
 
