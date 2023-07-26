@@ -41,7 +41,9 @@ const ARQ_Department_create = async (_, { departmentInput = {} }) => {
     const ID = uuidv4();
     const { name, users = [] } = departmentInput;
 
-    const key = name.trim().toLowerCase().replaceAll(" ", "_");
+    const namePrefix = name.trim().slice(0, 3).toUpperCase();
+    
+    const key = `ARQ-${namePrefix}`
 
     const newDepartment = await new Department({
       _id: ID,
