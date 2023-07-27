@@ -8,7 +8,7 @@ const schema = Schema(
     name: { type: String, default: "" },
     quantity: { type: Number, default: 0 },
     isAvailable: { type: Boolean, default: true },
-    department: { type: String, required: true, default: "" },
+    departmentId: { type: String, required: true, default: "" },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     isRemove: { type: Boolean, default: false },

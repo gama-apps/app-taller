@@ -1,9 +1,13 @@
+const deparmentFields = `
+    _id: String
+    key: String
+    name: String
+`
+
 const ARQ_DepartmentSchema = [`
   
     type ARQ_Department {
-      _id: String
-      key: String
-      name: String
+      ${deparmentFields}
       #users: [ARQ_User]
       createdAt: String
       updatedAt: String
@@ -11,16 +15,12 @@ const ARQ_DepartmentSchema = [`
     }
 
     input ARQ_Department_input {
-      _id: String
-      key: String
-      name: String
+      ${deparmentFields}
       #users: [ARQ_User]
     }
 
     input ARQ_Department_filter {
-      _id: String
-      key: String
-      name: String
+      ${deparmentFields}
       #users: [ARQ_User]
     }
 
