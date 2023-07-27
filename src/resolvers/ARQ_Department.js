@@ -57,7 +57,7 @@ const ARQ_Department_create = async (_, { departmentInput = {} }) => {
     return newDepartment._id;
   } catch (error) {
     if (error.code === 11000) {
-      throw new Error('Ese departamento ya existe. Por favor, elija otro nombre para el departamento.');
+      throw new Error('La key de departamento ya existe. Por favor, elija otro nombre para el departamento.');
     } else {
       throw error;
     }
