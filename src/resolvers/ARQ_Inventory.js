@@ -17,26 +17,12 @@ const ARQ_Inventory = async (_, { filter = {}, options = {}, count = false }) =>
 
     if (count) return await Inventory.countDocuments(query);
 
-    //const find = Inventory.find(query)
+    const find = Inventory.find(query)
 
-    const collection = [{ $match: query }, { $sort: sort },
-       {
-        $lookup: {
-          from: 'department',
-          localField: 'departmentId',
-          foreignField: '_id',
-          as: 'departmentId'
-        }
-       } 
-    ]
+    if (skip) { find.skip(skip) }
+    if (limit) { find.limit(limit) }
 
-    // if (skip) { find.skip(skip) }
-    // if (limit) { find.limit(limit) }
-
-    if (skip) collection.push({ $skip: skip })
-    if (limit) collection.push({ $limit: limit })
-
-    return await Inventory.aggregate(collection)
+    return await find.lean()
   } catch (error) {
     return error;
   }
@@ -52,10 +38,18 @@ const ARQ_Inventory_count = async (_, { filter = {} }) => {
 
 const ARQ_Inventory_create = async (_, { inventoryInput = {} }) => {
   try {
+    let lastAssignedNumber = 0;
+
+
     const ID = uuidv4();
     const { name, quantity, isAvailable, departmentId } = inventoryInput;
 
-    const key = name.trim().toLowerCase().replaceAll(" ", "_");
+    //const namePreffix = name.trim().slice(0, 3).toUpperCase();
+
+    lastAssignedNumber++;
+    const keyNumber = String(lastAssignedNumber).padStart(3, '0');
+
+    const key = `TN-${keyNumber}`;
 
     const newInventory = await new Inventory({
       _id: ID,
