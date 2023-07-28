@@ -2,6 +2,9 @@ const Inventory = require('../models/Inventory');
 const { handlePagination } = require('@codecraftkit/utils');
 const { v4: uuidv4 } = require('uuid');
 
+//esta variable se usa en ARQ_Inventory_create 
+let lastAssignedNumber = 0;
+
 const ARQ_Inventory = async (_, { filter = {}, options = {}, count = false }) => {
   try {
     let query = { isRemove: false };
@@ -38,7 +41,7 @@ const ARQ_Inventory_count = async (_, { filter = {} }) => {
 
 const ARQ_Inventory_create = async (_, { inventoryInput = {} }) => {
   try {
-    let lastAssignedNumber = 0;
+    
 
 
     const ID = uuidv4();
