@@ -41,9 +41,6 @@ const ARQ_Inventory_count = async (_, { filter = {} }) => {
 
 const ARQ_Inventory_create = async (_, { inventoryInput = {} }) => {
   try {
-    
-
-
     const ID = uuidv4();
     const { name, quantity, isAvailable, departmentId } = inventoryInput;
 
