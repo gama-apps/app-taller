@@ -4,26 +4,41 @@ const { v4: uuidv4 } = require('uuid');
 
 const ARQ_Department = async (_, { filter = {}, options = {}, count = false }) => {
   try {
+    const { sort = { createdAt: -1 }, skip, limit } = handlePagination(options)
     let query = { isRemove: false };
-    const { skip, limit } = handlePagination(options);
     const { _id, key, name, users } = filter;
 
     if (_id) query._id = _id;
     if (key) query.key = { $regex: key, $options: "i" };
     if (name) query.name = { $regex: name, $options: "i" };
     if (users) query.users = users;
-    const find = Department.find(query);
-
+    
     if (count) return await Department.countDocuments(query);
+    
+    const collection = [
+      { $match: query },
+      { $sort: sort },
+      {
+       $lookup: {
+         from: 'Inventory',
+         localField: '_id',
+         foreignField: 'departmentId',
+         as: 'invDepartment'
+       }
+      },
+      {
+        $unwind: {
+          path: '$invDepartment',
+          preserveNullAndEmptyArrays: true
+        }
+      }
+   ]
 
-    if (skip) {
-      find.skip(skip);
-    }
-    if (limit) {
-      find.limit(limit);
-    }
 
-    return await find.lean();
+   if (skip) collection.push({ $skip: skip })
+   if (limit) collection.push({ $limit: limit })
+
+   return await Department.aggregate(collection)
   } catch (error) {
     return error;
   }
@@ -51,7 +66,6 @@ const ARQ_Department_create = async (_, { departmentInput = {} }) => {
       key,
       name,
       users,
-      createdAt: new Date().getTime(),
     }).save();
 
     return newDepartment._id;

@@ -8,6 +8,7 @@ const ARQ_DepartmentSchema = [`
   
     type ARQ_Department {
       ${deparmentFields}
+      invDepartment: ARQ_Inventory
       #users: [ARQ_User]
       createdAt: String
       updatedAt: String
