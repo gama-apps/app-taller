@@ -9,7 +9,7 @@ const schema = Schema({
   email: { type: String },
   password: { type: String },
   departmentId: { type: String },
-  role: { type: String },
+  roleId: { type: String },
   isLeader: { type: Boolean },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
