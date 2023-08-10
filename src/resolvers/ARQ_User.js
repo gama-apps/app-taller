@@ -39,7 +39,18 @@ const ARQ_User = async (_, { filter = {}, options = {}, count = false }) => {
   } catch (error) {
     return error;
   }
-};
+}
+
+const ARQ_User_count = async (_, { filter = {} }) => {
+  try {
+    return await ARQ_User(_, { filter, count: true });
+  } catch (error) {
+    return error;
+  }
+}
+
+const ARQ_User_create = async () => {}
+
 
 module.exports = {
     Query: {
