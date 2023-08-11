@@ -49,7 +49,37 @@ const ARQ_User_count = async (_, { filter = {} }) => {
   }
 }
 
-const ARQ_User_create = async () => {}
+const ARQ_User_create = async (_, { input = {} }) => {
+  try {
+    const ID = uuidv4();
+    const {
+      id,
+      first_name,
+      last_name,
+      email,
+      password,
+      departmentId,
+      roleId,
+      isLeader,
+    } = input;
+
+    const newUser = await new User({
+      _id: ID,
+      id,
+      first_name,
+      last_name,
+      email,
+      password,
+      departmentId,
+      roleId,
+      isLeader
+    }).save();
+
+    return newUser._id;
+  } catch (error) {
+    return error
+  }
+}
 
 
 module.exports = {
