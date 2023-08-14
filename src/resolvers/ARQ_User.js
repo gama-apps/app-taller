@@ -107,7 +107,7 @@ const ARQ_User_Update = async (_, { input }) => {
         first_name,
         last_name,
         email,
-        //password,
+        password,
         departmentId,
         roleId,
         isLeader

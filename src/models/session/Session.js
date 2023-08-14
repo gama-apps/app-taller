@@ -7,7 +7,7 @@ const schema = Schema({
   role: String,
   userId: String,
   userName: String,
-  expiredAt: { type: Date, default: Date.now },
+  expiredAt: { type: Date, expires: 10 },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
   isRemove: { type: Boolean, default: false },
