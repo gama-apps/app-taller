@@ -62,7 +62,7 @@ async function start(){
   apolloServer.applyMiddleware({app});
 
   app.listen(PORT, () => {
-    console.log(`app-taller ready at port: ${PORT}`);
+    console.log(`app-taller ready at port: http://localhost:${PORT}/graphql`);
     connectDb()
   })
 }

@@ -15,7 +15,7 @@ const register = async (_, { input = {} }) => {
 
     const ID = uuidv4();
     const {
-      id,
+      document,
       first_name,
       last_name,
       email,
@@ -30,7 +30,7 @@ const register = async (_, { input = {} }) => {
 
     const newUser = await new User({
       _id: ID,
-      id,
+      document,
       first_name,
       last_name,
       email,
@@ -67,18 +67,25 @@ const login = async (_, { email, password }) => {
     }
 
     //pendiente de realizar la funcionalidad para expiredAt
-    
+
     const session = await new Session({
       _id: uuidv4(),
       token: uuidv4(),
       role: role.name,
       userId: loginUser._id,
       userName: `${loginUser.first_name} + ${loginUser.last_name}`,
-      expiredAt 
+      expiredAt: new Date(24 * 3600 * 1000)
     }).save();
 
     return session;
   } catch (error) {
     return error;
+  }
+}
+
+module.exports = {
+  Mutation: {
+    register,
+    login
   }
 }
