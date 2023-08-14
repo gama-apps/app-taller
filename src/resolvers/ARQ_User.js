@@ -1,5 +1,6 @@
 const { User } = require("../models/session/User");
 const { handlePagination } = require("@codecraftkit/utils");
+const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require("uuid");
 
 const ARQ_User = async (_, { filter = {}, options = {}, count = false }) => {
@@ -81,11 +82,48 @@ const ARQ_User_count = async (_, { filter = {} }) => {
 //   }
 // }
 
-const ARQ_User_Update = async () => {}
+const ARQ_User_Update = async (_, { input }) => {
+  try {
+    const {
+      _id,
+      id,
+      first_name,
+      last_name,
+      email,
+      password,
+      departmentId,
+      roleId,
+      isLeader,
+    } = input;
+
+    if(password){
+      const encryptedPassword = await bcrypt.hash(password, 10);
+      password = encryptedPassword 
+    }
+
+    await User.updateOne({_id}, 
+      {$set: {
+        id,
+        first_name,
+        last_name,
+        email,
+        //password,
+        departmentId,
+        roleId,
+        isLeader
+      }})
+
+      return _id
+  } catch (error) {
+    return error
+  }
+}
 
 const ARQ_User_delete = async (_, { _id }) => {
   try {
-    await User.findByIdAndUpdate()
+    await User.findByIdAndUpdate(_id, { $set: { isRemove: true } })
+
+    return true
   } catch (error) {
     return error
   }
