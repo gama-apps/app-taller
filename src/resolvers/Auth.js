@@ -25,7 +25,7 @@ const register = async (_, { input = {} }) => {
       isLeader,
     } = input;
 
-    //saltRound = 10
+    //saltRound = 10, encriptacion del password
     const hash = bcrypt.hashSync(password, 10);
 
     const newUser = await new User({
