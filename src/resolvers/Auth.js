@@ -6,13 +6,7 @@ const bcrypt = require('bcrypt');
 
 const register = async (_, { input = {} }) => {
   try {
-    //verifica si el email ya esta registrado
-    // const verifyEmail = await User.find({ email: input.email })
-
-    // if(!verifyEmail){
-    //   throw new Error('El email ya se encuentra registrado')
-    // }
-
+    
     const ID = uuidv4();
     const {
       document,
@@ -24,9 +18,16 @@ const register = async (_, { input = {} }) => {
       roleId,
       isLeader,
     } = input;
-
+    
     //saltRound = 10, encriptacion del password
     const hash = bcrypt.hashSync(password, 10);
+    
+    // //verifica si el email ya esta registrado
+    // const verifyEmail = await User.findOne({ email: input.email })
+
+    // if(!verifyEmail){
+    //   throw new Error('El email ya se encuentra registrado')
+    // }
 
     const newUser = await new User({
       _id: ID,
@@ -63,7 +64,7 @@ const login = async (_, { email, password }) => {
     const role = await Role.findById(loginUser.roleId);
 
     if(!role){
-      throw new Error('Contraseña incorrecta')
+      throw new Error('Role no encontrado')
     }
 
     //pendiente de realizar la funcionalidad para expiredAt
