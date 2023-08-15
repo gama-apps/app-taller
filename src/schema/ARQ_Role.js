@@ -19,7 +19,7 @@ const roleSchema = [`
 
   type Query {
     ARQ_Role(filter: ARQ_Role_filter): [ARQ_Role]
-    ARQ_Role_count(filter: input ARQ_Role_filter):Int
+    ARQ_Role_count(filter: ARQ_Role_filter):Int
   }
 
   type Mutation {
