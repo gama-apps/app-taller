@@ -7,11 +7,11 @@ const bcrypt = require('bcrypt');
 const register = async (_, { input = {} }) => {
   try {
     //verifica si el email ya esta registrado
-    const verifyEmail = await User.findOne({ email: input.email })
+    // const verifyEmail = await User.find({ email: input.email })
 
-    if(!verifyEmail){
-      throw new Error('El email ya se encuentra registrado')
-    }
+    // if(!verifyEmail){
+    //   throw new Error('El email ya se encuentra registrado')
+    // }
 
     const ID = uuidv4();
     const {
@@ -54,7 +54,7 @@ const login = async (_, { email, password }) => {
       throw new Error ('No se encontro el usuario')
     }
     
-    const validatePassword = await bcrypt.compare(password, loginUser.passworHash);
+    const validatePassword = await bcrypt.compare(password, loginUser.password);
 
     if(!validatePassword){
       throw new Error('Contraseña incorrecta')
