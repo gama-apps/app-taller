@@ -33,14 +33,14 @@ const authSchema = (`
   }
 
   
-  input RegisterInput {
+  input Register_input {
     ${UserField}
     createdAt: String 
     isRemove: Boolean 
   }
   
   type Mutation {
-    register(input: RegisterInput): ID
+    register(input: Register_input): ID
     login(email: String, password: String): Session
   }
 `);
