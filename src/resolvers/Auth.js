@@ -4,48 +4,48 @@ const { session: Role } = require('../models/session/Role');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
 
-const register = async (_, { input = {} }) => {
-  try {
+// const register = async (_, { input = {} }) => {
+//   try {
     
-    const ID = uuidv4();
-    const {
-      document,
-      first_name,
-      last_name,
-      email,
-      password,
-      departmentId,
-      roleId,
-      isLeader,
-    } = input;
+//     const ID = uuidv4();
+//     const {
+//       document,
+//       first_name,
+//       last_name,
+//       email,
+//       password,
+//       departmentId,
+//       roleId,
+//       isLeader,
+//     } = input;
     
-    //saltRound = 10, encriptacion del password
-    const hash = bcrypt.hashSync(password, 10);
+//     //saltRound = 10, encriptacion del password
+//     const hash = bcrypt.hashSync(password, 10);
     
-    // //verifica si el email ya esta registrado
-    // const verifyEmail = await User.findOne({ email: input.email })
+//     // //verifica si el email ya esta registrado
+//     // const verifyEmail = await User.findOne({ email: input.email })
 
-    // if(!verifyEmail){
-    //   throw new Error('El email ya se encuentra registrado')
-    // }
+//     // if(!verifyEmail){
+//     //   throw new Error('El email ya se encuentra registrado')
+//     // }
 
-    const newUser = await new User({
-      _id: ID,
-      document,
-      first_name,
-      last_name,
-      email,
-      password: hash,
-      departmentId,
-      roleId,
-      isLeader
-    }).save();
+//     const newUser = await new User({
+//       _id: ID,
+//       document,
+//       first_name,
+//       last_name,
+//       email,
+//       password: hash,
+//       departmentId,
+//       roleId,
+//       isLeader
+//     }).save();
 
-    return newUser._id;
-  } catch (error) {
-    return error
-  }
-}
+//     return newUser._id;
+//   } catch (error) {
+//     return error
+//   }
+// }
 
 const login = async (_, { email, password }) => {
   try {
