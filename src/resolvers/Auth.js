@@ -1,5 +1,5 @@
 const { session: Session} = require('../models/session/Session');
-const { session: User } = require('../models/session/User');
+const { User } = require('../models/session/User');
 const { session: Role } = require('../models/session/Role');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
