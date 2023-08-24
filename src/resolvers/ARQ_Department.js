@@ -52,10 +52,10 @@ const ARQ_Department_count = async (_, { filter = {} }) => {
   }
 };
 
-const ARQ_Department_create = async (_, { departmentInput = {} }) => {
+const ARQ_Department_create = async (_, { input = {} }) => {
   try {
     const ID = uuidv4();
-    const { name, users = [] } = departmentInput;
+    const { name, users = [] } = input;
 
     const namePrefix = name.trim().slice(0, 3).toUpperCase();
     
@@ -78,9 +78,9 @@ const ARQ_Department_create = async (_, { departmentInput = {} }) => {
   }
 };
 
-const ARQ_Department_update = async (_, { departmentInput }) => {
+const ARQ_Department_update = async (_, { input }) => {
   try {
-    const { _id, key, name, users } = departmentInput;
+    const { _id, key, name, users } = input;
 
     await Department.updateOne(
       { _id },
@@ -100,15 +100,15 @@ const ARQ_Department_update = async (_, { departmentInput }) => {
   }
 };
 
-const ARQ_Department_save = async (_, { departmentInput }) => {
+const ARQ_Department_save = async (_, { input }) => {
   try {
     const actions = {
       create: ARQ_Department_create,
       update: ARQ_Department_update,
     };
 
-    const action = departmentInput._id ? "update" : "create";
-    return actions[action](_, { departmentInput });
+    const action = input._id ? "update" : "create";
+    return actions[action](_, { input });
   } catch (error) {
     return error;
   }

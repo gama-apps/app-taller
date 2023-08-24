@@ -1,6 +1,6 @@
-const { session: Session} = require('../models/session/Session');
+const  Session = require('../models/session/Session');
 const   User  = require('../models/session/User');
-const { session: Role } = require('../models/session/Role');
+const  Role  = require('../models/session/Role');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
 

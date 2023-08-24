@@ -1,6 +1,6 @@
 const UserField = `
     _id: String
-    id: String
+    document: String
     first_name: String
     last_name: String
     email: String
@@ -28,6 +28,12 @@ const ARQ_UserSchema = [`
 
     type Query {
         ARQ_User(filter: ARQ_User_filter): [ARQ_User]
+        ARQ_User_count(filter: ARQ_User_filter): Int
+    }
+
+    type Mutation {
+        ARQ_User_update(input: ARQ_User_input):ID
+        ARQ_User_delete(_id: String!): Boolean
     }
 `]
 

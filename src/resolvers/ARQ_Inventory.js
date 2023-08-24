@@ -39,10 +39,10 @@ const ARQ_Inventory_count = async (_, { filter = {} }) => {
   }
 }
 
-const ARQ_Inventory_create = async (_, { inventoryInput = {} }) => {
+const ARQ_Inventory_create = async (_, { input = {} }) => {
   try {
     const ID = uuidv4();
-    const { name, quantity, isAvailable, departmentId } = inventoryInput;
+    const { name, quantity, isAvailable, departmentId } = input;
 
     //const namePreffix = name.trim().slice(0, 3).toUpperCase();
 
@@ -68,7 +68,7 @@ const ARQ_Inventory_create = async (_, { inventoryInput = {} }) => {
   }
 }
 
-const ARQ_Inventory_update = async (_, { inventoryInput }) => {
+const ARQ_Inventory_update = async (_, { input }) => {
   try {
     const { _id,
             key,
@@ -76,7 +76,7 @@ const ARQ_Inventory_update = async (_, { inventoryInput }) => {
             quantity,
             isAvailable,
             departmentId
-           } = inventoryInput;
+           } = input;
 
     await Inventory.updateOne(
       { _id },
@@ -98,10 +98,10 @@ const ARQ_Inventory_update = async (_, { inventoryInput }) => {
   }
 }
 
-const ARQ_Inventory_save = async (_, { inventoryInput }) => {
+const ARQ_Inventory_save = async (_, { input }) => {
   try {
-    if (typeof inventoryInput.quantity === 'number') {
-      inventoryInput.isAvailable = inventoryInput.quantity >= 1;
+    if (typeof input.quantity === 'number') {
+      input.isAvailable = input.quantity >= 1;
     } else {
       throw new Error('Quantity must be a number.');
     }
@@ -111,8 +111,8 @@ const ARQ_Inventory_save = async (_, { inventoryInput }) => {
       update: ARQ_Inventory_update
     };
 
-    const action = inventoryInput._id ? 'update' : 'create';
-    return actions[action](_, { inventoryInput });
+    const action = input._id ? 'update' : 'create';
+    return actions[action](_, { input });
   } catch (error) {
     return error;
   }
