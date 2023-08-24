@@ -1,5 +1,5 @@
 const { session: Session} = require('../models/session/Session');
-const { session: User } = require('../models/session/User');
+const   User  = require('../models/session/User');
 const { session: Role } = require('../models/session/Role');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
@@ -22,25 +22,27 @@ const register = async (_, { input = {} }) => {
     //saltRound = 10, encriptacion del password
     const hash = bcrypt.hashSync(password, 10);
     
-    // //verifica si el email ya esta registrado
-    // const verifyEmail = await User.findOne({ email: input.email })
+    //verifica si el email ya esta registrado
+    const verifyEmail = await User.findOne({ email: input.email })
+    
+    if(!verifyEmail){
+        throw new Error('El email ya se encuentra registrado')
+      }
+      
+      const newUser = {
+        _id: ID,
+        document,
+        first_name,
+        last_name,
+        email,
+        password: hash,
+        departmentId,
+        roleId,
+        isLeader
+      }
 
-    // if(!verifyEmail){
-    //   throw new Error('El email ya se encuentra registrado')
-    // }
-
-    const newUser = await new User({
-      _id: ID,
-      document,
-      first_name,
-      last_name,
-      email,
-      password: hash,
-      departmentId,
-      roleId,
-      isLeader
-    }).save();
-
+      await User(newUser).save();
+      
     return newUser._id;
   } catch (error) {
     return error
