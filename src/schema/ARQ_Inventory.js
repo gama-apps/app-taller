@@ -31,7 +31,7 @@ const ARQ_InventorySchema = [`
   }
 
   type Mutation {
-    ARQ_Inventory_save(inventoryInput: ARQ_Inventory_input):ID
+    ARQ_Inventory_save(input: ARQ_Inventory_input):ID
     ARQ_Inventory_delete(_id: String!):Boolean
   }
 `];

@@ -9,7 +9,7 @@ const ARQ_User = async (_, { filter = {}, options = {}, count = false }) => {
     const { skip, limit } = handlePagination(options);
     let {
       _id,
-      id,
+      doocument,
       first_name,
       last_name,
       email,
@@ -20,7 +20,7 @@ const ARQ_User = async (_, { filter = {}, options = {}, count = false }) => {
     } = filter;
 
     if (_id) query._id = _id
-    if (id) query.id = id
+    if (doocument) query.id = doocument
     if (first_name) query.first_name = first_name
     if (last_name) query.last_name = last_name 
     if (email) query.email = email
@@ -82,11 +82,11 @@ const ARQ_User_count = async (_, { filter = {} }) => {
 //   }
 // }
 
-const ARQ_User_Update = async (_, { input }) => {
+const ARQ_User_update = async (_, { input }) => {
   try {
     const {
       _id,
-      id,
+      document,
       first_name,
       last_name,
       email,
@@ -103,7 +103,7 @@ const ARQ_User_Update = async (_, { input }) => {
 
     await User.updateOne({_id}, 
       {$set: {
-        id,
+        document,
         first_name,
         last_name,
         email,
@@ -132,6 +132,11 @@ const ARQ_User_delete = async (_, { _id }) => {
 
 module.exports = {
     Query: {
-        ARQ_User
+        ARQ_User,
+        ARQ_User_count 
+    },
+    Mutation: {
+      ARQ_User_update,
+      ARQ_User_delete
     }
 }
