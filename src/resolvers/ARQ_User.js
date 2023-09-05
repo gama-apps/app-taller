@@ -9,7 +9,7 @@ const ARQ_User = async (_, { filter = {}, options = {}, count = false }) => {
     const { skip, limit } = handlePagination(options);
     let {
       _id,
-      doocument,
+      document,
       first_name,
       last_name,
       email,
@@ -20,7 +20,7 @@ const ARQ_User = async (_, { filter = {}, options = {}, count = false }) => {
     } = filter;
 
     if (_id) query._id = _id
-    if (doocument) query.id = doocument
+    if (document) query.id = document
     if (first_name) query.first_name = first_name
     if (last_name) query.last_name = last_name 
     if (email) query.email = email
