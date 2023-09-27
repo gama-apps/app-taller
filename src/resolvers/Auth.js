@@ -70,6 +70,7 @@ const login = async (_, { email, password }) => {
     }
 
     //pendiente de realizar la funcionalidad para expiredAt
+    //hola desde linux
 
     const session = await new Session({
       _id: uuidv4(),
