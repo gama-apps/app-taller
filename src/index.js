@@ -5,6 +5,8 @@ const { connect } = require('mongoose');
 //const { makeExecutableSchema } = require('@graphql-tools/utils');
 const { makeExecutableSchema } = require('@graphql-tools/schema');
 const { ApolloServerPluginLandingPageProductionDefault } = require('apollo-server-core');
+const dotenv = require('dotenv')
+dotenv.config()
 
 // //conexion con DataBase mongoDB
 // //data base conecction
@@ -20,7 +22,7 @@ const { ApolloServerPluginLandingPageProductionDefault } = require('apollo-serve
 // }
 
 //mongo atlas connection
-const db = 'mongodb+srv://taller:tXr5VDeFTKvEvpT3@app-taller.wphfm1b.mongodb.net/ms-taller-app'
+const db = process.env.MONGODB
 
 const connectDb = async () => {
     try {
@@ -44,7 +46,7 @@ app.use(bodyParser.json());
 
 //configuración del servidor con express
 //configuration of express server
-const PORT = process.env.PORT || 4003;
+const PORT = process.env.PORT;
 
 //configuración del servidor de apollo y la conexion con el servidor de express
 //configuration of Apollo server an connection with express server
