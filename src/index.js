@@ -71,3 +71,5 @@ async function start(){
 
 //iniciando servidor
 start()
+
+//validar con graphql shield
