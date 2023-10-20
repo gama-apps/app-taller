@@ -93,5 +93,4 @@ module.exports = {
   }
 }
 
-//borrar
-//fgdfgdfgdfgdfgd
+//hacer las valiidaciones de graphql shield
