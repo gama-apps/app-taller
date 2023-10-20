@@ -94,3 +94,4 @@ module.exports = {
 }
 
 //hacer las valiidaciones de graphql shield
+//asignar las reglas segun el rol
