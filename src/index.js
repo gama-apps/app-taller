@@ -73,3 +73,4 @@ async function start(){
 start()
 
 //validar con graphql shield
+//practicar funciones async 
