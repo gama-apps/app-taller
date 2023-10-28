@@ -108,11 +108,11 @@ const ARQ_Inventory_update = async (_, { input }) => {
 
 const ARQ_Inventory_save = async (_, { input }) => {
   try {
-    if (typeof input.quantity === 'number') {
-      input.isAvailable = input.quantity >= 1;
-    } else {
-      throw new Error('Quantity must be a number.');
-    }
+    // if (typeof input.quantity === 'number') {
+    //   input.isAvailable = input.quantity >= 1;
+    // } else {
+    //   throw new Error('Quantity must be a number.');
+    // }
 
     const actions = {
       create: ARQ_Inventory_create ,
