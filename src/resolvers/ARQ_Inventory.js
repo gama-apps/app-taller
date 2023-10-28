@@ -94,11 +94,11 @@ const ARQ_Inventory_update = async (_, { input }) => {
 
     const availability = isAvailable >= 1 ? 'true' : 'false'
 
-    if (quantity >= 1 ){
-      return isAvailable == true
-    }else{
-      return isAvailable == false
-    }
+    // if (quantity >= 1 ){
+    //   return isAvailable == true
+    // }else{
+    //   return isAvailable == false
+    // }
 
     return _id;
   } catch (error) {
