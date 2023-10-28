@@ -92,6 +92,14 @@ const ARQ_Inventory_update = async (_, { input }) => {
       }
     );
 
+    const availability = isAvailable >= 1 ? 'true' : 'false'
+
+    // if (quantity >= 1 ){
+    //   return isAvailable == true
+    // }else{
+    //   return isAvailable == false
+    // }
+
     return _id;
   } catch (error) {
     return error;
@@ -100,11 +108,11 @@ const ARQ_Inventory_update = async (_, { input }) => {
 
 const ARQ_Inventory_save = async (_, { input }) => {
   try {
-    if (typeof input.quantity === 'number') {
-      input.isAvailable = input.quantity >= 1;
-    } else {
-      throw new Error('Quantity must be a number.');
-    }
+    // if (typeof input.quantity === 'number') {
+    //   input.isAvailable = input.quantity >= 1;
+    // } else {
+    //   throw new Error('Quantity must be a number.');
+    // }
 
     const actions = {
       create: ARQ_Inventory_create ,
