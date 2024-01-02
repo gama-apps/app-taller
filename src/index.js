@@ -2,7 +2,6 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const bodyParser = require('body-parser');
 const { connect } = require('mongoose');
-//const { makeExecutableSchema } = require('@graphql-tools/utils');
 const { makeExecutableSchema } = require('@graphql-tools/schema');
 const { ApolloServerPluginLandingPageProductionDefault } = require('apollo-server-core');
 const dotenv = require('dotenv')
