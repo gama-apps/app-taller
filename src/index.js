@@ -9,28 +9,28 @@ dotenv.config()
 
 // //conexion con DataBase mongoDB
 // //data base conecction
-// const db = process.env.MONGODB || 'mongodb://localhost:27017/ms-taller-app'
-
-// const connectDb = async () => {
-//   try {
-//       await connect(db);
-//       console.log('DB CONNECTED..');
-//   } catch (error) {
-//       console.error('DB CONNECTION ERROR:', error);
-//   }
-// }
-
-//mongo atlas connection
-const db = process.env.MONGODB
+const db = process.env.MONGODB || 'mongodb://localhost:27017/ms-taller-app'
 
 const connectDb = async () => {
-    try {
-        await connect(db, { useNewUrlParser: true, useUnifiedTopology: true });
-        console.log('DB CONNECTED..');
-    } catch (error) {
-        console.error('DB CONNECTION ERROR:', error);
-    }
+  try {
+      await connect(db);
+      console.log('DB CONNECTED..');
+  } catch (error) {
+      console.error('DB CONNECTION ERROR:', error);
+  }
 }
+
+// //mongo atlas connection
+// const db = process.env.MONGOURl
+
+// const connectDb = async () => {
+//     try {
+//         await connect(db, { useNewUrlParser: true, useUnifiedTopology: true });
+//         console.log('DB CONNECTED..');
+//     } catch (error) {
+//         console.error('DB CONNECTION ERROR:', error);
+//     }
+// }
 
 //inicializar la app
 //initializating app
