@@ -3,6 +3,8 @@ const   User  = require('../models/session/User');
 const  Role  = require('../models/session/Role');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
+const {shield, rule, and, or} =require('graphql-shield');
+const { argsToArgsConfig } = require('graphql/type/definition');
 
 const register = async (_, { input = {} }) => {
   try {
@@ -64,6 +66,10 @@ const login = async (_, { email, password }) => {
     }
 
     const role = await Role.findById(loginUser.roleId);
+    
+    const isAdmin = rule()(async (parent,args, ctx, info) => {
+      return ctx.user.role === 'admin'
+    })
 
     if(!role){
       throw new Error('Role no encontrado')
