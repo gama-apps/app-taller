@@ -9,7 +9,7 @@ dotenv.config()
 
 // //conexion con DataBase mongoDB
 // //data base conecction
-const db = process.env.MONGODB || 'mongodb://localhost:27017/ms-taller-app'
+
 
 const connectDb = async () => {
   try {
