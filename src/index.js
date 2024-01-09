@@ -20,7 +20,7 @@ dotenv.config()
 //       console.error('DB CONNECTION ERROR:', error);
 //   }
 // }
-//
+//porque se me desconchinflo esta maricada
 
 //mongo atlas connection
 const db = process.env.MONGODB
